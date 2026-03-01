@@ -153,7 +153,7 @@ export default function SpecViewer({
               const isRegenerating = regeneratingSection === section.key
 
               return (
-                <Card key={section.key} className="border-border/60 overflow-hidden">
+                <Card key={section.key} className="group border-border/60 overflow-hidden">
                   <button
                     className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-secondary/30"
                     onClick={() => toggleSection(section.key)}
