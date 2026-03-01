@@ -1,0 +1,68 @@
+{
+  "agent_id": "69a387ce78f49a857ee6cd33",
+  "agent_name": "Spec Orchestrator Manager",
+  "agent_type": "json",
+  "accessor": "json",
+  "has_module_outputs": true,
+  "response_schema": {
+    "type": "object",
+    "properties": {
+      "spec_title": {"type": "string"},
+      "executive_summary": {"type": "string"},
+      "problem_statement": {"type": "string"},
+      "scope_and_goals": {"type": "string"},
+      "user_stories": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "story": {"type": "string"},
+            "acceptance_criteria": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["story", "acceptance_criteria"],
+          "additionalProperties": false
+        }
+      },
+      "technical_requirements": {"type": "string"},
+      "system_architecture": {"type": "string"},
+      "success_metrics": {"type": "array", "items": {"type": "string"}},
+      "risk_assessment": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {"type": "string"},
+            "mitigation": {"type": "string"}
+          },
+          "required": ["risk", "mitigation"],
+          "additionalProperties": false
+        }
+      },
+      "timeline_considerations": {"type": "string"},
+      "glossary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "term": {"type": "string"},
+            "definition": {"type": "string"}
+          },
+          "required": ["term", "definition"],
+          "additionalProperties": false
+        }
+      },
+      "document_metadata": {
+        "type": "object",
+        "properties": {
+          "version": {"type": "string"},
+          "last_updated": {"type": "string"},
+          "section_count": {"type": "number"}
+        },
+        "required": ["version", "last_updated", "section_count"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["spec_title", "executive_summary", "problem_statement", "scope_and_goals", "user_stories", "technical_requirements", "system_architecture", "success_metrics", "risk_assessment", "timeline_considerations", "glossary", "document_metadata"],
+    "additionalProperties": false
+  }
+}

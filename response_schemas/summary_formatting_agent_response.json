@@ -1,0 +1,68 @@
+{
+  "agent_id": "69a387a829fc9c9afefea994",
+  "agent_name": "Summary & Formatting Agent",
+  "agent_type": "json",
+  "accessor": "json",
+  "has_module_outputs": false,
+  "response_schema": {
+    "type": "object",
+    "properties": {
+      "executive_summary": {"type": "string"},
+      "formatted_spec_title": {"type": "string"},
+      "formatted_problem_statement": {"type": "string"},
+      "formatted_scope_and_goals": {"type": "string"},
+      "formatted_user_stories": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "story": {"type": "string"},
+            "acceptance_criteria": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["story", "acceptance_criteria"],
+          "additionalProperties": false
+        }
+      },
+      "formatted_technical_requirements": {"type": "string"},
+      "formatted_system_architecture": {"type": "string"},
+      "formatted_success_metrics": {"type": "array", "items": {"type": "string"}},
+      "formatted_risk_assessment": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {"type": "string"},
+            "mitigation": {"type": "string"}
+          },
+          "required": ["risk", "mitigation"],
+          "additionalProperties": false
+        }
+      },
+      "formatted_timeline": {"type": "string"},
+      "glossary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "term": {"type": "string"},
+            "definition": {"type": "string"}
+          },
+          "required": ["term", "definition"],
+          "additionalProperties": false
+        }
+      },
+      "document_metadata": {
+        "type": "object",
+        "properties": {
+          "version": {"type": "string"},
+          "last_updated": {"type": "string"},
+          "section_count": {"type": "number"}
+        },
+        "required": ["version", "last_updated", "section_count"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["executive_summary", "formatted_spec_title", "formatted_problem_statement", "formatted_scope_and_goals", "formatted_user_stories", "formatted_technical_requirements", "formatted_system_architecture", "formatted_success_metrics", "formatted_risk_assessment", "formatted_timeline", "glossary", "document_metadata"],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "app_name": "SpecDraft",
+  "pattern": "manager-subagent",
+  "created_at": "2026-03-01",
+  "agents": {
+    "spec_orchestrator_manager": {
+      "agent_id": "69a387ce78f49a857ee6cd33",
+      "name": "Spec Orchestrator Manager",
+      "type": "manager",
+      "file_output": true,
+      "voice_config": false,
+      "image_output_config": false
+    },
+    "requirements_extractor_agent": {
+      "agent_id": "69a387ba02d22f6533d62e2d",
+      "name": "Requirements Extractor Agent",
+      "type": "sub-agent",
+      "file_output": false,
+      "voice_config": false,
+      "image_output_config": false,
+      "tools": ["GITHUB_GET_A_REPOSITORY", "GITHUB_GET_REPOSITORY_CONTENT"]
+    },
+    "spec_drafting_agent": {
+      "agent_id": "69a387a85d446100f182a995",
+      "name": "Spec Drafting Agent",
+      "type": "sub-agent",
+      "file_output": false,
+      "voice_config": false,
+      "image_output_config": false
+    },
+    "summary_formatting_agent": {
+      "agent_id": "69a387a829fc9c9afefea994",
+      "name": "Summary & Formatting Agent",
+      "type": "sub-agent",
+      "file_output": false,
+      "voice_config": false,
+      "image_output_config": false
+    }
+  },
+  "manager_agent_id": "69a387ce78f49a857ee6cd33",
+  "sub_agent_ids": [
+    "69a387ba02d22f6533d62e2d",
+    "69a387a85d446100f182a995",
+    "69a387a829fc9c9afefea994"
+  ]
+}

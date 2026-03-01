@@ -1,0 +1,94 @@
+{
+  "workflow": {
+    "nodes": [
+      {"id": "input_node", "type": "Input", "label": "User Input", "nodeCategory": "input"},
+      {"id": "manager_agent", "type": "Agent", "label": "Spec Orchestrator Manager", "nodeCategory": "agent"},
+      {"id": "extractor_agent", "type": "Agent", "label": "Requirements Extractor Agent", "nodeCategory": "agent"},
+      {"id": "drafter_agent", "type": "Agent", "label": "Spec Drafting Agent", "nodeCategory": "agent"},
+      {"id": "formatter_agent", "type": "Agent", "label": "Summary & Formatting Agent", "nodeCategory": "agent"},
+      {"id": "output_node", "type": "Output", "label": "Specification Document", "nodeCategory": "end"}
+    ],
+    "edges": [
+      {"source": "input_node", "target": "manager_agent"},
+      {"source": "manager_agent", "target": "extractor_agent"},
+      {"source": "manager_agent", "target": "drafter_agent"},
+      {"source": "manager_agent", "target": "formatter_agent"},
+      {"source": "manager_agent", "target": "output_node"}
+    ]
+  },
+  "agents": {
+    "spec_orchestrator_manager": {
+      "agent_id": "69a387ce78f49a857ee6cd33",
+      "name": "Spec Orchestrator Manager",
+      "type": "manager",
+      "description": "Coordinates the end-to-end specification generation workflow -- routes GitHub data to extraction, orchestrates drafting and summarization, and aggregates the final structured document",
+      "provider_id": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "file_output": true,
+      "image_output_config": null,
+      "voice_config": null,
+      "managed_agents": [
+        {"agent_id": "69a387ba02d22f6533d62e2d", "role": "Requirements Extractor"},
+        {"agent_id": "69a387a85d446100f182a995", "role": "Spec Drafter"},
+        {"agent_id": "69a387a829fc9c9afefea994", "role": "Summary Formatter"}
+      ],
+      "tool_configs": []
+    },
+    "requirements_extractor_agent": {
+      "agent_id": "69a387ba02d22f6533d62e2d",
+      "name": "Requirements Extractor Agent",
+      "type": "sub-agent",
+      "description": "Fetches README and documentation files from the specified GitHub repository, parses content, and extracts structured requirements, user stories, acceptance criteria, and technical constraints",
+      "provider_id": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "file_output": false,
+      "image_output_config": null,
+      "voice_config": null,
+      "managed_agents": [],
+      "tool_configs": [
+        {
+          "tool_name": "github",
+          "tool_source": "composio",
+          "action_names": ["GITHUB_GET_A_REPOSITORY", "GITHUB_GET_REPOSITORY_CONTENT"],
+          "persist_auth": true,
+          "server_id": "",
+          "provider_uuid": "6980d819100ddff45dec4e86"
+        }
+      ]
+    },
+    "spec_drafting_agent": {
+      "agent_id": "69a387a85d446100f182a995",
+      "name": "Spec Drafting Agent",
+      "type": "sub-agent",
+      "description": "Takes extracted requirements and writes a comprehensive hybrid-format feature specification with clear sections for both technical and business audiences",
+      "provider_id": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "file_output": false,
+      "image_output_config": null,
+      "voice_config": null,
+      "managed_agents": [],
+      "tool_configs": []
+    },
+    "summary_formatting_agent": {
+      "agent_id": "69a387a829fc9c9afefea994",
+      "name": "Summary & Formatting Agent",
+      "type": "sub-agent",
+      "description": "Produces an executive summary, ensures consistent heading hierarchy and section formatting, adds a glossary for technical terms, and finalizes the document structure",
+      "provider_id": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.4,
+      "top_p": 1,
+      "file_output": false,
+      "image_output_config": null,
+      "voice_config": null,
+      "managed_agents": [],
+      "tool_configs": []
+    }
+  }
+}

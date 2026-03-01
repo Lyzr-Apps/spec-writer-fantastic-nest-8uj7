@@ -1,0 +1,45 @@
+{
+  "agent_id": "69a387a85d446100f182a995",
+  "agent_name": "Spec Drafting Agent",
+  "agent_type": "json",
+  "accessor": "json",
+  "has_module_outputs": false,
+  "response_schema": {
+    "type": "object",
+    "properties": {
+      "spec_title": {"type": "string"},
+      "problem_statement": {"type": "string"},
+      "scope_and_goals": {"type": "string"},
+      "user_stories_section": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "story": {"type": "string"},
+            "acceptance_criteria": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["story", "acceptance_criteria"],
+          "additionalProperties": false
+        }
+      },
+      "technical_requirements": {"type": "string"},
+      "system_architecture": {"type": "string"},
+      "success_metrics": {"type": "array", "items": {"type": "string"}},
+      "risk_assessment": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {"type": "string"},
+            "mitigation": {"type": "string"}
+          },
+          "required": ["risk", "mitigation"],
+          "additionalProperties": false
+        }
+      },
+      "timeline_considerations": {"type": "string"}
+    },
+    "required": ["spec_title", "problem_statement", "scope_and_goals", "user_stories_section", "technical_requirements", "system_architecture", "success_metrics", "risk_assessment", "timeline_considerations"],
+    "additionalProperties": false
+  }
+}
